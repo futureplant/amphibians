@@ -21,7 +21,7 @@ createFormLinks <- function(dataframe){
                        ",",
                        dataframe$longitude,
                        '"',
-                       "> Assessment </a> <br />"
+                       "> Assessment </a> <br />    "
         
                        )
   

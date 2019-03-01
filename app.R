@@ -20,10 +20,12 @@ server <- function(input, output, session) {
     waterpoints <- getPoints()
     waterlinks <- createFormLinks(waterpoints)
     # Add default OpenStreetMap map tiles
-    leaflet(data = waterlinks) %>% setView(lng = 1.8243883, lat = 41.728416, zoom = 11) %>%  #  set view to start extent, area over Schiphol Airport   
+    leaflet(data = waterlinks) %>% setView(lng = 1.8243883, lat = 41.728416, zoom = 13) %>%  
       addTiles() %>% 
-      addMarkers(label = ~as.character("click me"), 
-                 popup =  ~formURL)
+      addMarkers( 
+                 popup =  ~formURL
+                 )
+    
     })
 }
 

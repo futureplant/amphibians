@@ -5,6 +5,10 @@ createFormLinks <- function(dataframe){
   basicMapURL <- "https://www.google.com/maps/search/?api=1&query="
   
   dataframe$formURL <- paste0(
+                        
+                        '<strong>Point ',
+                        dataframe$OBJECTID,
+                        '</strong><br />',
                         '<br /><a href ="',
                         basicMapURL,
                         st_coordinates(dataframe)[,'Y'],

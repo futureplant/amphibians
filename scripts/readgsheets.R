@@ -6,9 +6,6 @@ getPools <- function(dtf){
   return(dtf[which(dtf$El.punt.d.aigua.és.adequat. == 'No (piscina, ciment, edifici...)'),2])
 }
 
-# url of gsheet which contains form answers
-url <- 'https://docs.google.com/spreadsheets/d/1rHUTv2m6N1cmx4gP0zwKxRBQok9Zr-FEBmf90Ksp7eU'
-dtf <- read.csv(text=gsheet2text(url, format='csv'), stringsAsFactors=FALSE)
 
 # creates dataframe from google sheet answers
 

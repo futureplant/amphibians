@@ -9,7 +9,7 @@ source("ui.R")
 source("scripts/getpoints.R")
 source("scripts/geturls.R")
 source("scripts/hyperlinks.R")
-source("scripts/readgsheets.R")
+source("scripts/readgsheets.R",encoding = "Latin1")
 
 
 

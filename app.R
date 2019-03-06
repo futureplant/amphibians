@@ -16,16 +16,25 @@ source("scripts/readgsheets.R")
 # server serves information to the user interface that is constructed in scripts/ui.R file
 server <- function(input, output, session) {
   
-  samples <- getGsheet()
+
+  
+  # url of gsheet which contains form answers
+  url <- 'https://docs.google.com/spreadsheets/d/1rHUTv2m6N1cmx4gP0zwKxRBQok9Zr-FEBmf90Ksp7eU'
+  
+  # creates dataframe from google sheet answers
+  dtf <- read.csv(text=gsheet2text(url, format='csv'), stringsAsFactors=FALSE)
+  
+  pools <- getPools(dtf)
+  incompletes <- getIncomplete(dtf)
   waterpoints <- getPoints()
   
   # get rd of this line if it doesn't work
-  waterpoints = waterpoints[!waterpoints$OBJECTID %in% samples,]
+  waterpoints = waterpoints[!waterpoints$OBJECTID %in% pools,]
   
   getColor <- function(samples,waterpoints) {
     sapply(waterpoints$OBJECTID, function(OBJECTID) {
-      if(OBJECTID %in% samples) {
-        "red"
+      if(OBJECTID %in% incompletes) {
+        "orange"
       } else {
         "blue"
       } 

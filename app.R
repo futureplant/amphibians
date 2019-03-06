@@ -26,6 +26,7 @@ server <- function(input, output, session) {
   
   pools <- getPools(dtf)
   incompletes <- getIncomplete(dtf)
+  completes <- getCompletes(dtf)
   waterpoints <- getPoints()
   
   # get rd of this line if it doesn't work
@@ -35,6 +36,8 @@ server <- function(input, output, session) {
     sapply(waterpoints$OBJECTID, function(OBJECTID) {
       if(OBJECTID %in% incompletes) {
         "orange"
+      } else if(OBJECTID %in% completes){
+        "green"
       } else {
         "blue"
       } 

@@ -22,7 +22,7 @@ server <- function(input, output, session) {
   url <- 'https://docs.google.com/spreadsheets/d/1rHUTv2m6N1cmx4gP0zwKxRBQok9Zr-FEBmf90Ksp7eU'
   
   # creates dataframe from google sheet answers
-  dtf <- read.csv(text=gsheet2text(url, format='csv'), stringsAsFactors=FALSE)
+  dtf <- read.csv(text=gsheet2text(url, format='csv'), stringsAsFactors=FALSE,fileEncoding = "UTF-8",encoding = "UTF-8")
   
   pools <- getPools(dtf)
   incompletes <- getIncomplete(dtf)

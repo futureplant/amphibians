@@ -25,12 +25,14 @@ server <- function(input, output, session) {
   dtf <- read.csv(text=gsheet2text(url, format='csv'), stringsAsFactors=FALSE,fileEncoding = "UTF-8",encoding = "UTF-8")
   
   pools <- getPools(dtf)
+  forbidden <- getNoAccess(dtf)
   incompletes <- getIncomplete(dtf)
   completes <- getCompletes(dtf)
   waterpoints <- getPoints()
   
   # get rd of this line if it doesn't work
   waterpoints = waterpoints[!waterpoints$OBJECTID %in% pools,]
+  waterpoints = waterpoints[!waterpoints$OBJECTID %in% forbidden,]
   
   getColor <- function(samples,waterpoints) {
     sapply(waterpoints$OBJECTID, function(OBJECTID) {

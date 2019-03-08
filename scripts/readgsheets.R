@@ -19,3 +19,8 @@ getIncomplete <- function(dtf){
 getCompletes <- function(dtf){
   return((dtf[which(dtf$Visita.finalitzada == "Si"),2]))
 }
+
+getNoAccess <- function(dtf){
+  # returns point ID's of points that have been classified as not suitable
+  return(dtf[which(dtf$Accessibilitat == 'Sense accés'),2])
+}

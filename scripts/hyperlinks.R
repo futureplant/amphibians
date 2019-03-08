@@ -29,7 +29,18 @@ createFormLinks <- function(dataframe){
                        ",",
                        st_coordinates(dataframe)[,'X'],
                        '"',
-                       "> Assessment </a> <br />    "
+                       "> Assessment </a> <br /><br />    ",
+                       '<a href ="',
+                       basicObsURL,
+                       "&entry.844325190=",
+                       dataframe$OBJECTID,
+                       "&entry.166518206=",
+                       st_coordinates(dataframe)[,'Y'],
+                       ",",
+                       st_coordinates(dataframe)[,'X'],
+                       '"',
+                       "> Observations </a> <br />    "
+                       
         
                        )
   

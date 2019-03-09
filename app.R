@@ -7,7 +7,6 @@ library(leaflet)
 
 source("ui.R")
 source("scripts/getpoints.R")
-source("scripts/geturls.R")
 source("scripts/hyperlinks.R")
 source("scripts/readgsheets.R",encoding = "Latin1")
 
@@ -20,15 +19,18 @@ server <- function(input, output, session) {
   
   # url of gsheet which contains form answers
   url <- 'https://docs.google.com/spreadsheets/d/1rHUTv2m6N1cmx4gP0zwKxRBQok9Zr-FEBmf90Ksp7eU'
-  
   # creates dataframe from google sheet answers
   dtf <- read.csv(text=gsheet2text(url, format='csv'), stringsAsFactors=FALSE,fileEncoding = "UTF-8",encoding = "UTF-8")
+  
+  
+
   
   pools <- getPools(dtf)
   forbidden <- getNoAccess(dtf)
   incompletes <- getIncomplete(dtf)
   completes <- getCompletes(dtf)
   waterpoints <- getPoints()
+
   
   # get rd of this line if it doesn't work
   waterpoints = waterpoints[!waterpoints$OBJECTID %in% pools,]
@@ -62,7 +64,7 @@ server <- function(input, output, session) {
       addTiles() %>% 
       addAwesomeMarkers(
                   icon = icons,
-                  popup =  ~formURL
+                  popup = ~formURL
                  )
     
     })

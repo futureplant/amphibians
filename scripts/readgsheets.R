@@ -24,3 +24,7 @@ getNoAccess <- function(dtf){
   # returns point ID's of points that have been classified as not suitable
   return(dtf[which(dtf$Accessibilitat == 'Sense accés'),2])
 }
+
+getCount <- function(dtf,id){
+  return(dtf[,1])
+}

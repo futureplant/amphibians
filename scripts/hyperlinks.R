@@ -7,6 +7,10 @@ createFormLinks <- function(dataframe){
   basicFormURL <- "https://docs.google.com/forms/d/e/1FAIpQLSfqSXh2pMbbO9km0IFYl4DEQbpTgmf-88bjfkpGSMyw9uIxpQ/viewform?usp=pp_url"
   basicMapURL <- "https://www.google.com/maps/search/?api=1&query="
   basicObsURL <- "https://docs.google.com/forms/d/e/1FAIpQLSdXUE2BVhzMWS9FgA1H3FuTeSjAG0QWDpF8StdSno8Wh-eo4A/viewform?usp=pp_url"
+  urlobs <- 'https://docs.google.com/spreadsheets/d/12UrAPu96rbjzFuqlTIaklLiFUNPFxCYOxtTmAbL786A/edit?usp=sharing'
+  obsdtf <- read.csv(text=gsheet2text(urlobs, format='csv'), stringsAsFactors=FALSE,fileEncoding = "UTF-8",encoding = "UTF-8")[,1]
+  dataframe$Observations <- lapply(dataframe$OBJECTID,FUN=function(x) sum(obsdtf == x))
+
   
   dataframe$formURL <- paste0(
                         
@@ -39,7 +43,10 @@ createFormLinks <- function(dataframe){
                        ",",
                        st_coordinates(dataframe)[,'X'],
                        '"',
-                       "> Observations </a> <br />    "
+                       "> Observations </a> (",
+                       dataframe$Observations,
+                       ")"
+                       
                        
         
                        )

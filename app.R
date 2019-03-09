@@ -5,7 +5,7 @@ library(shiny)
 library(shinydashboard)
 library(leaflet)
 
-source("ui.R")
+source("ui.R",encoding = "Latin1")
 source("scripts/getpoints.R")
 source("scripts/hyperlinks.R")
 source("scripts/readgsheets.R",encoding = "Latin1")

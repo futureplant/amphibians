@@ -28,3 +28,7 @@ getNoAccess <- function(dtf){
 getCount <- function(dtf,id){
   return(dtf[,1])
 }
+
+getImpossibles <- function(dtf){
+  return((dtf[which(dtf$Possibilitat.exploració == "Cap"),2]))
+}

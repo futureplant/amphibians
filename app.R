@@ -26,17 +26,18 @@ server <- function(input, output, session) {
 
   
   pools <- getPools(dtf)
-  forbidden <- getNoAccess(dtf)
+  # forbidden <- getNoAccess(dtf)
   incompletes <- getIncomplete(dtf)
   impossibles <- getImpossibles(dtf)
-  completes <- getCompletes(dtf)
+  completes   <- getCompletes(dtf)
   waterpoints <- getPoints()
 
   
-  # get rd of this line if it doesn't work
   waterpoints = waterpoints[!waterpoints$OBJECTID %in% pools,]
-  waterpoints = waterpoints[!waterpoints$OBJECTID %in% forbidden,]
+  # waterpoints = waterpoints[!waterpoints$OBJECTID %in% forbidden,]
   waterpoints = waterpoints[!waterpoints$OBJECTID %in% impossibles,]
+  
+
   
   getColor <- function(samples,waterpoints) {
     sapply(waterpoints$OBJECTID, function(OBJECTID) {
